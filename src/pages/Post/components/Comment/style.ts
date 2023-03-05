@@ -13,6 +13,10 @@ export const CommentContainer = styled.div`
     border: 2px solid ${(props) => props.theme['base-background']};
     box-shadow: 0 0 0 2px ${(props) => props.theme.blue};
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const Content = styled.div`
@@ -55,7 +59,6 @@ export const Content = styled.div`
 
     p {
       line-height: 1.6;
-      text-align: justify;
 
       & + p {
         margin-top: 1.25rem;
