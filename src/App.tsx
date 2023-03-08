@@ -1,7 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { ThemeProvider } from 'styled-components'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
@@ -12,9 +12,9 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
 
-      <BrowserRouter>
+      <HashRouter>
         <Router />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }
