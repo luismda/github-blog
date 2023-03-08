@@ -1,8 +1,7 @@
-import ReactMarkdown from 'react-markdown'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { CommentContainer, Content } from './style'
-import { CodePreview } from '../CodePreview'
+import { Body, CommentContainer, Content } from './style'
+import { ContentPreview } from '../ContentPreview'
 
 interface CommentProps {
   comment: string
@@ -43,32 +42,9 @@ export function Comment({ comment, author, commentedAt }: CommentProps) {
           </time>
         </header>
 
-        <div>
-          <ReactMarkdown
-            skipHtml
-            components={{
-              a({ children, node, ...rest }) {
-                return (
-                  <a {...rest} target="_blank">
-                    {children}
-                  </a>
-                )
-              },
-              code({ children, inline, className }) {
-                const code = String(children)
-                const language = className?.match(/language-(\w+)/)?.[1] ?? ''
-
-                return !inline ? (
-                  <CodePreview code={code} language={language} />
-                ) : (
-                  <code>{children}</code>
-                )
-              },
-            }}
-          >
-            {comment}
-          </ReactMarkdown>
-        </div>
+        <Body>
+          <ContentPreview contentInMarkdown={comment} alignContentText="left" />
+        </Body>
       </Content>
     </CommentContainer>
   )

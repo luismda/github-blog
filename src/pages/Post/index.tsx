@@ -1,18 +1,17 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import ReactMarkdown from 'react-markdown'
 import Skeleton from 'react-loading-skeleton'
 
 import { PostInfo } from './components/PostInfo'
 import { PostInfoSkeleton } from './components/PostInfoSkeleton'
 import { PostContentSkeleton } from './components/PostContentSkeleton'
-import { CodePreview } from './components/CodePreview'
 import { Comment } from './components/Comment'
 import { api } from '../../lib/axios'
 
 import { CommentCounter, CommentList, PostContent } from './style'
 import { CommentSkeleton } from './components/CommentSkeleton'
+import { ContentPreview } from './components/ContentPreview'
 
 type RouteParams = {
   issueNumber: string
@@ -43,6 +42,7 @@ export function Post() {
   const [post, setPost] = useState({} as PostData)
   const [comments, setComments] = useState([] as CommentData[])
   const [isLoading, setIsLoading] = useState(true)
+
   const { issueNumber } = useParams<RouteParams>()
 
   const theme = useTheme()
@@ -93,30 +93,7 @@ export function Post() {
         {isLoading ? (
           <PostContentSkeleton />
         ) : (
-          <ReactMarkdown
-            skipHtml
-            components={{
-              a({ children, node, ...rest }) {
-                return (
-                  <a {...rest} target="_blank">
-                    {children}
-                  </a>
-                )
-              },
-              code({ children, inline, className }) {
-                const code = String(children)
-                const language = className?.match(/language-(\w+)/)?.[1] ?? ''
-
-                return !inline ? (
-                  <CodePreview code={code} language={language} />
-                ) : (
-                  <code>{children}</code>
-                )
-              },
-            }}
-          >
-            {post.body}
-          </ReactMarkdown>
+          <ContentPreview contentInMarkdown={post.body} />
         )}
       </PostContent>
 

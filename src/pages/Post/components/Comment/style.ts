@@ -21,7 +21,7 @@ export const CommentContainer = styled.div`
 
 export const Content = styled.div`
   flex: 1;
-  background: ${(props) => props.theme['base-post']};
+  background: ${(props) => props.theme['base-profile']};
   border-radius: 10px;
   padding: 1rem;
 
@@ -44,35 +44,8 @@ export const Content = styled.div`
       color: ${(props) => props.theme['base-span']};
     }
   }
+`
 
-  div {
-    margin-top: 0.5rem;
-
-    p + h1,
-    p + h2,
-    p + h3,
-    p + h4,
-    p + h5 {
-      margin-top: 1.25rem;
-      line-height: 1.6;
-    }
-
-    p {
-      line-height: 1.6;
-
-      & + p {
-        margin-top: 1.25rem;
-      }
-
-      code {
-        border-radius: 4px;
-        padding: 0 0.5rem;
-        background: ${(props) => props.theme['base-post']};
-      }
-    }
-
-    a {
-      color: ${(props) => props.theme.blue};
-    }
-  }
+export const Body = styled.div`
+  margin-top: 0.5rem;
 `
